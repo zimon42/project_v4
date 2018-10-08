@@ -92,3 +92,16 @@ Now that list works, what next?
 Update the other vats
 
 Updating other vats works!!
+
+What to do next?
+Add a lock button
+
+Refactoring app with VatPanel etc
+Stuck!
+
+How do you indent a piece of selected code in vs code?
+https://stackoverflow.com/questions/40492960/how-to-indent-format-a-selection-of-code-in-vscode-with-ctrlshiftf
+Use Ctrl + ]? Its not working
+
+Hello world not displaying when using three VatPanel where each VatPanel should output "Hello world"; Fixed: Forgot to add call to renderVatPanels method in render body
+
