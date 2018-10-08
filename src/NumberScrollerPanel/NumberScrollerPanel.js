@@ -6,24 +6,67 @@ class NumberScrollerPanel extends Component {
         vals:[25,25,25]
     };
 
-    decHandler = (index) => {
+    decIncHandler = (op, index) => {
         let oldStateCopy = {...this.state};
-        oldStateCopy.vals[index]--;
+
+        const byHowMuchCurrent = this.calcByHowMuchCurrent(op);
+        oldStateCopy.vals[index] += byHowMuchCurrent;
+
+        const byHowMuchOthers = this.calcByHowMuchOthers(oldStateCopy.vals, index, op);
+        this.updateOthers(oldStateCopy.vals, index, byHowMuchOthers);
+
         this.setState(oldStateCopy);
     }
 
-    incHandler = (index) => {
-        let oldStateCopy = {...this.state};
-        oldStateCopy.vals[index]++;
-        this.setState(oldStateCopy);
+    calcByHowMuchCurrent = (op) => {        
+        if (op == "inc") {
+            return 1;
+        }
+        else if (op == "dec") {
+            return -1;
+        }
+        else {
+            return 1;
+        }
+    }
+
+    calcByHowMuchOthers = (arr, index, op) => {        
+        let byHowMuch = 1/this.countOthers(arr, index);
+        if (op == "inc") {
+            return -1*byHowMuch;
+        }
+        else if (op == "dec") {
+            return byHowMuch;
+        }
+        else {
+            return byHowMuch;
+        }
+    }
+
+    countOthers = (arr, index) => {
+        let count = 0;
+        for (let i=0; i<arr.length; i++) {
+            if (i != index) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    updateOthers = (arr, index, byHowMuch) => {
+        for (let i=0; i<arr.length; i++) {
+            if (i != index) {
+                arr[i] += byHowMuch;
+            }
+        }
     }
 
     renderNumberScroller = (index) => {
         return (
             <NumberScroller 
                 val={this.state.vals[index]}
-                incHandler={() => this.incHandler(index)}
-                decHandler={() => this.decHandler(index)}
+                incHandler={() => this.decIncHandler("inc", index)}
+                decHandler={() => this.decIncHandler("dec", index)}
             />
         );
     }

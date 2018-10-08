@@ -76,3 +76,19 @@ Fixed so all buttons work!!
 
 How do you comment several lines in React html ?
 Use {/* */}
+
+Number scroller list with array map works!!
+
+Now I wanto save files (log.txt and src folder) to git
+
+Did git add log.txt -- it worked
+
+When doing commit, use -m flag, otherwise opens up some editor whish i don't know how to exit from.
+
+How do you push to remote server?
+git push origin master
+
+Now that list works, what next?
+Update the other vats
+
+Updating other vats works!!
