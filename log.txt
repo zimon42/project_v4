@@ -1,0 +1,78 @@
+Step : Create a React app that outputs Hello world
+--------------------------------------------------
+
+https://github.com/facebook/create-react-app
+Start command prompt by clicking the manifying glass and typing cmd.
+cd C:\wamp64\www\miedweb\
+npx create-react-app project_v4 (npx is not a spelling error)
+cd project_v4
+npm start
+
+localhost:3000 doesnt work
+Now it suddenly works! I didn't do anything fix it. Maybe it needn't some time to start the server
+
+Now lets edit to show "Hello world"
+
+Open VS Code and click File->Open Folder from the File menu
+
+Edited the App.js file. It now shows Hello world!
+
+Next lets install git
+
+First create a remote repository at github
+
+There were problem creating the account
+Password has been compromised in a third party data breach
+
+Chose a harder password - works now. Here is the info:
+Username: zimon42
+Email: simon.wrang2@gmail.com
+Password: ilv23456
+
+Next start a repository on github:
+
+Had to verify email
+
+Now it works
+
+Now lets install git on my machine
+
+git.init
+echo >>gittest.txt
+git add gittest.txt
+git commit -m "first commit"
+
+Gives message: "Please tell me who you are"
+
+Added email and name
+
+Now it worked
+
+Hm, I never had to input my password to my remote repository at github when installing git, or creating the local repository on my machine. 
+
+Now when i pushed, I had to enter it
+
+Stuck. Clicked Enter on the keyboard, then it continued
+
+Still displays Hello World despite ive created a NumberScroller component that should display "NumberScroller".
+
+Restared server - still doesnt work.
+
+Fixed import NumberScroller in App.js. Now it works!!
+
+Setting width for text field to 25 px, but still is long
+
+Broke the import. Yielded a compile error. Then changed back, and now it works. This is the second time this happens. Next time, break the import and then fix it, to make it works. 
+
+Fixed problem: I kept only get one text field when I had three number scroller components. In NumberScrollerPanel, had export default NumberScroller; when I should have had
+export default NumberScrollerPanel;
+
+TypeError: Cannot read property 'val' of undefined. 
+Solved: Changed from props.val to this.props.val. Removed props from render argument.
+
+Next fix when click decrease button, decrease by one
+
+Fixed so all buttons work!!
+
+How do you comment several lines in React html ?
+Use {/* */}
