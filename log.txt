@@ -123,3 +123,7 @@ inc and decHandler need the index of the changed vat
 My solution: pass another attribute "index" down the hierarchy.
 
 Pressing buttons works!! Updates the other vats correctly
+
+Next fix LockSetter
+
+LockHandler method in VotePanel file alerts correct index

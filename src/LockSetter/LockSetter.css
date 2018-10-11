@@ -3,8 +3,16 @@
 }
 
 .LockSetterImage {
-    width:30px;
-    height:30px;
+    width:17px;
+    height:17px;
     position:relative;
-    top:10px;
+    top:6px;
+}
+
+.LockSetterIsLockedFalse {
+    border:1px solid green;
+}
+
+.LockSetterIsLockedTrue {
+    border:1px solid red;
 }

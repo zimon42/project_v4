@@ -4,9 +4,18 @@ import "./LockSetter.css";
 
 class LockSetter extends Component {
   render() {
+
+    let lockImgClasses = "LockSetterImage ";
+    lockImgClasses += this.props.isLocked ?
+    "LockSetterIsLockedTrue" :
+    "LockSetterIsLockedFalse";
+
     return (
         <div className="LockSetter">
-            <img src={lock_img} className="LockSetterImage" />
+            <img 
+                src={lock_img} 
+                className={lockImgClasses} 
+                onClick={() => {return this.props.lockHandler(this.props.index)}} />
         </div>
     );
   }

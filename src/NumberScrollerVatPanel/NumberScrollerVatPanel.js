@@ -15,7 +15,11 @@ class NumberScrollerVatPanel extends Component {
                     incHandler={this.props.incHandler}
                     decHandler={this.props.decHandler}
                 />
-                <LockSetter />
+                <LockSetter 
+                    index={this.props.index} 
+                    isLocked={this.props.vat.isLocked}
+                    lockHandler={this.props.lockHandler}
+                />
             </div>
         );
     }

@@ -84,6 +84,10 @@ class NumberScrollerVotePanel extends Component {
     }
   }
 
+  lockHandler = (index) => {
+    alert("lockHandler, index:"+index);
+  }
+
   renderVatPanels = () => {
     return (
         <div>
@@ -94,6 +98,7 @@ class NumberScrollerVotePanel extends Component {
                 index={index}
                 incHandler={this.incHandler}
                 decHandler={this.decHandler}
+                lockHandler={this.lockHandler}
               />  
             )})
           }
