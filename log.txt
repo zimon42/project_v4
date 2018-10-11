@@ -105,3 +105,11 @@ Use Ctrl + ]? Its not working
 
 Hello world not displaying when using three VatPanel where each VatPanel should output "Hello world"; Fixed: Forgot to add call to renderVatPanels method in render body
 
+Cannot display image lock.png
+https://stackoverflow.com/questions/39999367/how-do-i-reference-a-local-image-in-react
+Solution:
+import img from './lock.png';
+<img src={img} />
+
+NumberScrollerVatPanelTitle class is not having any effect.
+Solution: Injected a syntax error and then corrected it

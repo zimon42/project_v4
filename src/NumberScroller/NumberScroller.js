@@ -4,9 +4,9 @@ import './NumberScroller.css';
 class NumberScroller extends Component {
   render() {
     return (
-        <div className="ns_panel">
+        <div className="NumberScroller">
             <button onClick={this.props.decHandler}>&lt;</button>
-            <input type="text" value={this.props.val} className="ns_text"/>
+            <input type="text" value={this.props.val} className="NumberScrollerText"/>
             <button onClick={this.props.incHandler}>&gt;</button>
         </div>
     );

@@ -1,8 +1,8 @@
-.ns_panel {
+.NumberScroller {
     display:inline-block;
     margin-right:10px;
 }
 
-.ns_text {
+.NumberScrollerText {
     width:25px;
 }

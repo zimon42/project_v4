@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import NumberScrollerPanel from './NumberScrollerPanel/NumberScrollerPanel';
+import NumberScrollerVotePanel from './NumberScrollerVotePanel/NumberScrollerVotePanel';
 import './App.css';
 
-const VOTE_PANEL_TYPE = "number_scroller_panel"
+const VOTE_PANEL_TYPE = "number_scroller_vote_panel"
 
 class App extends Component {
 
   getVotePanelElement = () => {
-    if (VOTE_PANEL_TYPE == "number_scroller_panel") {
-        return <NumberScrollerPanel />;
+    if (VOTE_PANEL_TYPE == "number_scroller_vote_panel") {
+        return <NumberScrollerVotePanel />;
     } else {
-        return <NumberScrollerPanel />;
+        return <NumberScrollerVotePanel />;
     }
   }    
   
   render() {
     return (
       <div>
-        Helo
         {this.getVotePanelElement()}
       </div>
     );
