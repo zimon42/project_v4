@@ -5,9 +5,9 @@ class NumberScroller extends Component {
   render() {
     return (
         <div className="NumberScroller">
-            <button onClick={this.props.decHandler}>&lt;</button>
+            <button onClick={() => {return this.props.decHandler(this.props.index);}} >&lt;</button>
             <input type="text" value={this.props.val} className="NumberScrollerText"/>
-            <button onClick={this.props.incHandler}>&gt;</button>
+            <button onClick={() => {return this.props.incHandler(this.props.index);}} >&gt;</button>
         </div>
     );
   }

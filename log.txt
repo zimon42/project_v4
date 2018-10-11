@@ -113,3 +113,13 @@ import img from './lock.png';
 
 NumberScrollerVatPanelTitle class is not having any effect.
 Solution: Injected a syntax error and then corrected it
+
+How do I pass state down from top component to a component much fruther down in the hierarchy?
+Pass entire vat (not vats) object down to VatPanel component
+
+Now incHandler and decHandler shows alert
+
+inc and decHandler need the index of the changed vat
+My solution: pass another attribute "index" down the hierarchy.
+
+Pressing buttons works!! Updates the other vats correctly

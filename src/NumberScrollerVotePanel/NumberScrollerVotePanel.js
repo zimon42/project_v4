@@ -11,12 +11,92 @@ class NumberScrollerVotePanel extends Component {
       ]
   }
 
+  incHandler = (index) => {
+    // alert("incHandler, index:"+index);
+    this.decIncHandler("inc", index);
+  }
+
+  decHandler = (index) => {
+    // alert("decHandler, index:"+index);
+    this.decIncHandler("dec", index);
+  }
+
+  decIncHandler = (op, index) => {
+    // alert("decIncHandler, op:"+op+", index:"+index);
+
+    let oldStateCopy = {...this.state};
+
+    const byHowMuchCurrent = this.calcByHowMuchCurrent(op);
+
+    // alert("byHowMuchCurrent:"+byHowMuchCurrent);
+
+    oldStateCopy.vats[index].val += byHowMuchCurrent;
+
+    const byHowMuchOthers = this.calcByHowMuchOthers(oldStateCopy.vats, index, op);
+    
+    // alert("byHowMuchOthers:"+byHowMuchOthers);
+
+    this.updateOthers(oldStateCopy.vats, index, byHowMuchOthers);
+    
+    this.setState(oldStateCopy);
+  }
+
+  calcByHowMuchCurrent = (op) => {        
+    if (op == "inc") {
+        return 1;
+    }
+    else if (op == "dec") {
+        return -1;
+    }
+    else {
+        return 1;
+    }
+  }
+
+  calcByHowMuchOthers = (arr, index, op) => {        
+    let byHowMuch = 1/this.countOthers(arr, index);
+    if (op == "inc") {
+        return -1*byHowMuch;
+    }
+    else if (op == "dec") {
+        return byHowMuch;
+    }
+    else {
+        return byHowMuch;
+    }
+  }
+
+  countOthers = (arr, index) => {
+    let count = 0;
+    for (let i=0; i<arr.length; i++) {
+        if (i != index) {
+            count++;
+        }
+    }
+    return count;
+  }
+
+  updateOthers = (arr, index, byHowMuch) => {
+    for (let i=0; i<arr.length; i++) {
+        if (i != index) {
+            arr[i].val += byHowMuch;
+        }
+    }
+  }
+
   renderVatPanels = () => {
     return (
         <div>
-            <NumberScrollerVatPanel itemName={this.state.vats[0].title} />
-            <NumberScrollerVatPanel itemName={this.state.vats[1].title} />
-            <NumberScrollerVatPanel itemName={this.state.vats[2].title} />        
+          {
+            this.state.vats.map( (val, index) => {return (
+              <NumberScrollerVatPanel 
+                vat={this.state.vats[index]} 
+                index={index}
+                incHandler={this.incHandler}
+                decHandler={this.decHandler}
+              />  
+            )})
+          }
         </div>
     );
   }

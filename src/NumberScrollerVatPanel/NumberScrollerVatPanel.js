@@ -8,8 +8,13 @@ class NumberScrollerVatPanel extends Component {
     render() {
         return (
             <div>
-                <div className="NumberScrollerVatPanelTitle">{this.props.itemName}:</div>
-                <NumberScroller />
+                <div className="NumberScrollerVatPanelTitle">{this.props.vat.title}:</div>
+                <NumberScroller 
+                    val={this.props.vat.val}
+                    index={this.props.index} 
+                    incHandler={this.props.incHandler}
+                    decHandler={this.props.decHandler}
+                />
                 <LockSetter />
             </div>
         );
