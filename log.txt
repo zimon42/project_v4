@@ -143,3 +143,16 @@ Roibos
 Broth
 Mineral water
 Average
+
+HorizontalSlierVotePanel prints Hello world
+
+Created state with 10 coca colas
+
+How do I specify an image address without importing all of them?
+https://stackoverflow.com/questions/42580130/display-images-in-react-using-jsx-without-import
+Solution:
+<img 
+    src={ require("../images/"+this.props.vat.img)}
+></img>
+
+Shows soda images
