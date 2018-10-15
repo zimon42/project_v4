@@ -21,6 +21,14 @@ class NumberScrollerVotePanel extends Component {
     this.decIncHandler("dec", index);
   }
 
+  lockHandler = (index) => {
+    // alert("lockHandler, index:"+index);  
+    let oldStateCopy = {...this.state};
+    let isLocked = oldStateCopy.vats[index].isLocked;
+    oldStateCopy.vats[index].isLocked = !isLocked;
+    this.setState(oldStateCopy);
+  }
+
   decIncHandler = (op, index) => {
     // alert("decIncHandler, op:"+op+", index:"+index);
 
@@ -69,7 +77,8 @@ class NumberScrollerVotePanel extends Component {
   countOthers = (arr, index) => {
     let count = 0;
     for (let i=0; i<arr.length; i++) {
-        if (i != index) {
+        let isLocked = this.state.vats[i].isLocked;
+        if (i != index && !isLocked) {
             count++;
         }
     }
@@ -78,14 +87,11 @@ class NumberScrollerVotePanel extends Component {
 
   updateOthers = (arr, index, byHowMuch) => {
     for (let i=0; i<arr.length; i++) {
-        if (i != index) {
+        let isLocked = this.state.vats[i].isLocked;
+        if (i != index && !isLocked) {
             arr[i].val += byHowMuch;
         }
     }
-  }
-
-  lockHandler = (index) => {
-    alert("lockHandler, index:"+index);
   }
 
   renderVatPanels = () => {

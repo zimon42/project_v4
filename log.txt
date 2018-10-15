@@ -127,3 +127,19 @@ Pressing buttons works!! Updates the other vats correctly
 Next fix LockSetter
 
 LockHandler method in VotePanel file alerts correct index
+
+Bug: Created a new LockHandler method without an alert, but it still alerted. Finally I figured out I had already made a LockHandler method further down in the code that was being used.
+
+isLocked works!
+
+Soda
+Coffee
+Milk
+Chocolate
+Rejuvelac
+Black tea
+Green tea
+Roibos
+Broth
+Mineral water
+Average
