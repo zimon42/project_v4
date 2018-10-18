@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import "./HorizontalSliderVatPanel.css";
+import HorizontalSlider from '../HorizontalSlider/HorizontalSlider';
+import LockSetter from '../LockSetter/LockSetter';
 
 class HorizontalSliderVatPanel extends Component {
 
     render() {
         return (
-            <div>
-                <div className="HorizontalSliderVatPanelLeftSide">
-                    <img 
-                        src={ require("../images/"+this.props.vat.img)}
-                    ></img><br />
-                    <div>{this.props.vat.title}</div>
-                </div>
+            <div className="HorizontalSliderVatPanel">
+                <img className="HorizontalSliderVatPanelImage"
+                    src={ require("../images/"+this.props.vat.img)}
+                ></img>
+                <div className="HorizontalSliderVatPanelTitle">
+                    {this.props.vat.title}
+                </div> 
+                <HorizontalSlider /> 
+                <LockSetter />              
             </div>
         );
     }

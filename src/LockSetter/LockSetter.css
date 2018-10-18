@@ -1,12 +1,14 @@
 .LockSetter {
     display: inline-block;
+    vertical-align: top;
+    margin-left:5px;
 }
 
 .LockSetterImage {
-    width:17px;
-    height:17px;
-    position:relative;
-    top:6px;
+    width:40px;
+    height:40px;
+    /*position:relative;*/
+    /*top:6px;*/
 }
 
 .LockSetterIsLockedFalse {

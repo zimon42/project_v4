@@ -156,3 +156,14 @@ Solution:
 ></img>
 
 Shows soda images
+
+Couldnt find module HorizontalSlider. Solved: forgot to add HorizontalSlider to path below
+import HorizontalSlider from '../HorizontalSlider/HorizontalSlider
+
+Don't forget to Save All!!!! That explains why I had to introduce a syntax error and then correct it to make the app work - files werent saved.
+
+Problem: Slider bar anchored at bottom
+Solution:
+vertical-align: top
+
+All 10 images displaying
