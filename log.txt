@@ -167,3 +167,17 @@ Solution:
 vertical-align: top
 
 All 10 images displaying
+
+Slider button graphics done!
+
+Mouse down handler works!
+
+I need to capture a mouse move event. But I wanto set it on the body element.
+https://fortes.com/2018/react-and-dom-events/
+Solution:
+https://stackoverflow.com/questions/32485520/how-can-i-add-a-click-handler-to-body-from-within-a-react-component 
+
+Next. Set val in vote panel and should move the button accordingly
+Must set style={style} in horizontalSliderButton
+
+Working on calculating left

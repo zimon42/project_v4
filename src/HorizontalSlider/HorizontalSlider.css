@@ -23,3 +23,42 @@
     background-repeat: no-repeat;
 }
 
+.HorizontalSliderButton {
+	width: 100px;
+	height: 50px;
+    top: -4px;
+    left:0px;
+	background-color: #0088AA;
+	border: solid 1px #888888;
+	border-radius: 8px;
+	position: absolute;
+	z-index: 2;
+}
+
+.HorizontalSliderButtonWindow {
+	width: 80px;
+	height: 29px;
+	margin: 9px;
+	background-color: #000000;
+	border-radius: 4px;
+	z-index: 3;
+	color: #FFFFFF;
+	font-size: 14pt;
+	text-align: center;
+	font-family: 'Verdana', Geneva, sans-serif;
+    font-weight: 600;
+    padding-top:5px;
+}
+
+.no_select {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
+}
+
+.pointer_cursor {
+    cursor:pointer;
+}

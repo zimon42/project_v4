@@ -5,9 +5,26 @@ import "./HorizontalSlider.css";
 class HorizontalSlider extends Component {
 
     render() {
+
+        // These values must be updated here if you change in the .css file
+        const slider_width = 1000;
+        const button_width = 100;
+
+        let left = this.props.val;
+
+        let style = {
+            left:left+'px'
+        };
+
         return (
             <div className="HorizontalSlider">
                 <div className="HorizontalSliderBar">                    
+                </div>
+                <div style={style} className="HorizontalSliderButton pointer_cursor" 
+                    onMouseDown={(e) => {return this.props.mouseDownHandler(e,this.props.index)}}>
+                    <div className="HorizontalSliderButtonWindow">
+                        <span className="no-select pointer_cursor">{this.props.val}%</span>
+                    </div>
                 </div>
             </div>
         );

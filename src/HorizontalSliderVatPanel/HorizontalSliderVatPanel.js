@@ -14,7 +14,11 @@ class HorizontalSliderVatPanel extends Component {
                 <div className="HorizontalSliderVatPanelTitle">
                     {this.props.vat.title}
                 </div> 
-                <HorizontalSlider /> 
+                <HorizontalSlider 
+                    mouseDownHandler={this.props.mouseDownHandler}
+                    index={this.props.index}
+                    val={this.props.vat.val}
+                /> 
                 <LockSetter />              
             </div>
         );
