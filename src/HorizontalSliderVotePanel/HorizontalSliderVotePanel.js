@@ -64,23 +64,27 @@ class HorizontalSliderVotePanel extends Component {
         // console.log("mouseMoveHandler, dx:"+dx);
         let dVal = ( dX / (Config.SLIDER_WIDTH - Config.SLIDER_BUTTON_WIDTH)) * 100;
 
-        // Muse use "let" because we might be altering
-        // the value if button passes endpoints
-        let oldVal = this.state.oldVals[this.state.vatIndex];
-        let newVal = oldVal + dVal;
-
         // console.log("mouseMoveHandeler, newVal:"+newVal);
 
         // Handle too little to spare
-        let toSpare = this.calcOthersToSpare(this.state, dVal);  
+        let toSpare = this.calcOthersToSpare(this.state, dVal);
+        console.log("mouseMoveHandler, dVal:"+dVal+", toSpare:"+toSpare);
+
+        // Reduce dVal if too little too spare
         if (dVal <= 0 && toSpare < Math.abs(dVal)) {
           dVal = -1*toSpare;
         }
         if (dVal > 0 && toSpare < Math.abs(dVal)) {
+          console.log("Overload");
           dVal = toSpare;
         }
 
-        // Handle endpoints:
+        const oldVal = this.state.oldVals[this.state.vatIndex];
+        // Muse use "let" because we might be altering
+        // the value if button passes endpoints
+        let newVal = oldVal + dVal;
+
+            // Handle endpoints:
         if (newVal < 0) {
           newVal = 0;
           dVal = newVal - oldVal;
@@ -97,16 +101,66 @@ class HorizontalSliderVotePanel extends Component {
 
         // Handle other sliders
         this.handleOtherSliders(oldStateCopy, dVal);
-
+         
         // Set state
         this.setState(oldStateCopy);
     
       }
     }
 
+    // If reachd here, dVal has already been reduced,
+    // so no need to recalculate toSpare
     handleOtherSliders(oldStateCopy, dVal) {
-      let toSpare = this.calcOthersToSpare(oldStateCopy, dVal);
-      console.log("toSpare:"+toSpare);
+      if (dVal > 0) {
+        // Create array of indices, without current index:
+        // Example: 0,1,2,4,5,6,7,8
+        let arr = new Array(this.state.vats.length-1);
+        for (let i=0, j=0; i<this.state.vats.length; i++) {
+          if (i == this.state.vatIndex) {
+            continue;
+          };
+          arr[j++] = i;
+        }
+        // Sort array of indices, with the closest vats        
+        // to 0 in the beginning of the array
+        arr.sort((a,b) => {
+          return this.state.vats[a].val-this.state.vats[b].val;
+        });
+        // console.log("Sorted array:"+arr);
+        let usedDVal = Math.abs(dVal);
+        let lastLoop = false;
+        for (let i=0; i<arr.length; i++) {
+          let index = arr[i];
+          let distTo0 = this.state.vats[index].val;
+          let distAll = distTo0 * (arr.length-i);
+          
+          console.log("index:"+index);
+          console.log("distTo0:"+distTo0);
+          console.log("distAll:"+distAll);
+          console.log("usedDVal:"+usedDVal);
+
+          // Calculate dist:
+          let dist = this.state.vats[index].val;
+          if (distAll > usedDVal) {
+            console.log("distAll > usedDVal");
+            dist = usedDVal / (arr.length-i);
+            lastLoop = true;
+          } else {
+            console.log("NOT distAll > usedDVal");
+          }
+          // Update sliders
+          for (let j=i; j<arr.length; j++) {
+            let index2 = arr[j];
+            let oldVal = this.state.oldVals[index2];
+            let newVal = oldVal-dist;
+            oldStateCopy.vats[index2].val = newVal;
+          }
+          if (lastLoop) {
+            break;
+          }
+          usedDVal -= distAll;
+        }
+      }
     }
 
     calcOthersToSpare(oldStateCopy, dVal) {

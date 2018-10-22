@@ -199,4 +199,46 @@ Next: Update other slider buttons
 
 All of a sudden slider button is fast again in Chrome. Removed console.log in render method that was being repeated every time the mouse moved.
 
-Working on toSpare. Not working
+Working on toSpare. Not working. Solved: Calculated newVal too high up, before dVal was reduced. Solved by moving newVal calculation after reducing newVal
+
+Sorts array of indices works!
+
+Moves other sliders almost works. But when one slider button gets too close to the end, it starts shimmering.
+
+Bug: Moves each other slider as much as the slider being dragged. Solved:
+dist = usedDVal / (arr.length-1);
+Remove the -1:
+dist = usedDVal / (arr.length);
+
+Oops should be:
+dist = usedDVal / (arr.length-i);
+
+Still buggy. Flickering
+
+index:1
+
+HorizontalSliderVotePanel.js:138 distTo0:4.277777777777776
+HorizontalSliderVotePanel.js:139 distAll:8.555555555555552
+HorizontalSliderVotePanel.js:140 usedDVal:8.777777777777777
+HorizontalSliderVotePanel.js:149 NOT distAll > usedDVal
+HorizontalSliderVotePanel.js:137 index:2
+
+HorizontalSliderVotePanel.js:138 distTo0:11.166666666666668
+
+HorizontalSliderVotePanel.js:139 distAll:11.166666666666668
+HorizontalSliderVotePanel.js:140 usedDVal:0.22222222222222499
+HorizontalSliderVotePanel.js:145 distAll > usedDVal
+HorizontalSliderVotePanel.js:189 mouseUpHandler
+
+Seems to change mode when reached half way
+
+Is oldVals not being updated?
+
+Added this to mouseMoveHandler, but then speeds away
+        // Set old vals
+        let oldVals = new Array(this.state.vats.length);
+        for (let i=0; i<oldVals.length; i++) {
+          oldStateCopy.oldVals[i] = this.state.vats[i].val;
+        }
+
+Still working on this bug
