@@ -9,7 +9,7 @@
     /*position:relative;*/
     /*top:-25px; */
     vertical-align:top;
-    width: 1000px;
+    width: 1000px; /* If you change this value you need to update constatns in Config.js */
     height: 40px;
     background-color: #CCCCCC;
     text-align: center;
@@ -24,7 +24,7 @@
 }
 
 .HorizontalSliderButton {
-	width: 100px;
+	width: 100px; /* If you change this value you need to update constatns in Config.js */
 	height: 50px;
     top: -4px;
     left:0px;
@@ -50,7 +50,7 @@
     padding-top:5px;
 }
 
-.no_select {
+.no-select {
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
 	-khtml-user-select: none; /* Konqueror HTML */

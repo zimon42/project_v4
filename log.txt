@@ -181,3 +181,22 @@ Next. Set val in vote panel and should move the button accordingly
 Must set style={style} in horizontalSliderButton
 
 Working on calculating left
+Working!
+
+Used "static" keyword to define constants in config.js
+
+can drag slider buttons!
+Slow in Google Chrome
+Bug1: when clicking the slider button again, jumps to beginning
+Bug2: Error "nweVal" is read-only,
+at if (newVal < 0) newVal = 0;
+
+Solution to bug2: We have defined newVal as a const but when passing slide endpoints we altered the value and therefor must be "let".
+
+Solution to bug1: Forgot to set oldVal in state in mouseDownHandler. The value being used was instead 0 which was the value the state was initialized to.
+
+Next: Update other slider buttons
+
+All of a sudden slider button is fast again in Chrome. Removed console.log in render method that was being repeated every time the mouse moved.
+
+Working on toSpare. Not working
