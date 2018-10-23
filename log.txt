@@ -242,3 +242,11 @@ Added this to mouseMoveHandler, but then speeds away
         }
 
 Still working on this bug
+
+Big improvement by using tempVals. 
+
+Interesting: If sliders are oredered from top to bottom, no bug occurs.
+
+Måste arrayen sorteras om?
+
+Bug solved!!! Sorted on vat.vals when should have sorted on oldVats.

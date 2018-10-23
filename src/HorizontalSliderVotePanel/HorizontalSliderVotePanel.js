@@ -9,10 +9,10 @@ class HorizontalSliderVotePanel extends Component {
           {title: "Läsk", val: 25, img:"soda2.jpg", isLocked: false},
           {title: "Kaffe", val: 25, img:"coffee.png", isLocked: false},
           {title: "Mjölk", val: 25, img:"milk.jpg", isLocked: false},
-          /*
           {title: "Choklad", val: 25, img:"hot_chokolate.jpg", isLocked: false},
           {title: "Rejuvelac", val: 25, img:"rejuvelac.jpg", isLocked: false},
           {title: "Svart te", val: 25, img:"black_tea.png", isLocked: false},
+          /*
           {title: "Grönt te", val: 25, img:"green_tea.jpg", isLocked: false},
           {title: "Roibos", val: 25, img:"roibos.jpg", isLocked: false},
           {title: "Buljong", val: 25, img:"broth.jpg", isLocked: false},
@@ -68,7 +68,7 @@ class HorizontalSliderVotePanel extends Component {
 
         // Handle too little to spare
         let toSpare = this.calcOthersToSpare(this.state, dVal);
-        console.log("mouseMoveHandler, dVal:"+dVal+", toSpare:"+toSpare);
+        // console.log("mouseMoveHandler, dVal:"+dVal+", toSpare:"+toSpare);
 
         // Reduce dVal if too little too spare
         if (dVal <= 0 && toSpare < Math.abs(dVal)) {
@@ -101,7 +101,7 @@ class HorizontalSliderVotePanel extends Component {
 
         // Handle other sliders
         this.handleOtherSliders(oldStateCopy, dVal);
-         
+
         // Set state
         this.setState(oldStateCopy);
     
@@ -123,42 +123,50 @@ class HorizontalSliderVotePanel extends Component {
         }
         // Sort array of indices, with the closest vats        
         // to 0 in the beginning of the array
+
+
         arr.sort((a,b) => {
-          return this.state.vats[a].val-this.state.vats[b].val;
+          // return this.state.vats[a].val-this.state.vats[b].val;
+          return this.state.oldVals[a]-this.state.oldVals[b];
         });
+        console.log("Sorted arr:"+arr);
+        // Calculate tempVals;
+        let tempVals = new Array(this.state.vats.length);
+        for (let i=0;i<this.state.vats.length;i++) {
+          tempVals[i] = this.state.oldVals[i];
+        }
         // console.log("Sorted array:"+arr);
-        let usedDVal = Math.abs(dVal);
+        let dValLeft = Math.abs(dVal);
         let lastLoop = false;
         for (let i=0; i<arr.length; i++) {
+          console.log("for (let i="+i);
+
           let index = arr[i];
-          let distTo0 = this.state.vats[index].val;
+          let distTo0 = tempVals[index];
           let distAll = distTo0 * (arr.length-i);
           
-          console.log("index:"+index);
-          console.log("distTo0:"+distTo0);
-          console.log("distAll:"+distAll);
-          console.log("usedDVal:"+usedDVal);
-
           // Calculate dist:
-          let dist = this.state.vats[index].val;
-          if (distAll > usedDVal) {
-            console.log("distAll > usedDVal");
-            dist = usedDVal / (arr.length-i);
+          let dist = tempVals[index];
+          if (distAll > dValLeft) {
+            dist = dValLeft / (arr.length-i);
             lastLoop = true;
           } else {
-            console.log("NOT distAll > usedDVal");
           }
           // Update sliders
           for (let j=i; j<arr.length; j++) {
             let index2 = arr[j];
-            let oldVal = this.state.oldVals[index2];
-            let newVal = oldVal-dist;
-            oldStateCopy.vats[index2].val = newVal;
+            tempVals[index2] -= dist;
           }
           if (lastLoop) {
             break;
           }
-          usedDVal -= distAll;
+          dValLeft -= distAll;
+        }
+        // Update vals
+        for (let i=0; i<this.state.vats.length; i++) {
+          if (i != this.state.vatIndex) {
+            oldStateCopy.vats[i].val = tempVals[i];
+          }
         }
       }
     }
