@@ -265,4 +265,12 @@ Next recalculate toSpare - works!
 
 Next: Create router pages!
 
-Plus toSpare calculation must be refactored to not count locked sliders.
+HomePage route displayes correctly, but cannot find modules AdminPage and VotePage.
+
+New error: A <Router> may have only one child element"
+https://stackoverflow.com/questions/42992911/react-router-only-one-child
+Solution: You have to wrap routes in a div
+
+Working! The other error of not being able to find modules are gone.
+
+Working on HomePage component

@@ -4,26 +4,26 @@ import NumberScrollerVotePanel from './NumberScrollerVotePanel/NumberScrollerVot
 import HorizontalSliderVotePanel from './HorizontalSliderVotePanel/HorizontalSliderVotePanel';
 import './App.css';
 
-// const VOTE_PANEL_TYPE = "number_scroller_vote_panel"
-const VOTE_PANEL_TYPE = "horizontal_slider_vote_panel"
+import {BrowserRouter as Router} from 'react-router-dom';
+import Route from 'react-router-dom/Route';
+
+import HomePage from './HomePage/HomePage';
+import AdminPage from './AdminPage/AdminPage';
+import VotePage from './VotePage/VotePage';
+
+// HorizontalSliderVotePanel
 
 class App extends Component {
-
-  getVotePanelElement = () => {
-    if (VOTE_PANEL_TYPE == "number_scroller_vote_panel") {
-        return <NumberScrollerVotePanel />;
-    } else if (VOTE_PANEL_TYPE == "horizontal_slider_vote_panel") {
-        return <HorizontalSliderVotePanel />;
-    } else {
-        return <NumberScrollerVotePanel />;
-    }
-  }    
   
   render() {
     return (
-      <div>
-        {this.getVotePanelElement()}
-      </div>
+      <Router>
+        <div>
+          <Route path="/" strict exact component={HomePage} />
+          <Route path="/admin/" strict exact component={AdminPage} />
+          <Route path="/vote/" strict exact component={VotePage} />
+        </div>
+      </Router>
     );
   }
 }
