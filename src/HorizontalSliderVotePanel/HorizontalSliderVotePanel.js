@@ -56,6 +56,12 @@ class HorizontalSliderVotePanel extends Component {
     }
     
     mouseMoveHandler = (e) => {
+
+      // Do not move slider that is locked
+      if (this.state.vats[this.state.vatIndex].isLocked) {
+        return;
+      }
+
       // console.log("mouseMoveHandler");
       if (this.state.mouseIsDown) {
         const mouseMoveX = e.pageX;
@@ -121,15 +127,26 @@ class HorizontalSliderVotePanel extends Component {
           };
           arr[j++] = i;
         }
+
+        // Filter away locked sliders
+        let temp_arr = [];
+        for (let i=0; i<arr.length; i++) {
+          let index = arr[i];
+          let isLocked = this.state.vats[index].isLocked;
+          if (!isLocked) {
+            temp_arr.push(index);
+          }
+        }
+        arr = temp_arr;
+
         // Sort array of indices, with the closest vats        
         // to 0 in the beginning of the array
-
 
         arr.sort((a,b) => {
           // return this.state.vats[a].val-this.state.vats[b].val;
           return this.state.oldVals[a]-this.state.oldVals[b];
         });
-        console.log("Sorted arr:"+arr);
+        
         // Calculate tempVals;
         let tempVals = new Array(this.state.vats.length);
         for (let i=0;i<this.state.vats.length;i++) {
@@ -138,8 +155,7 @@ class HorizontalSliderVotePanel extends Component {
         // console.log("Sorted array:"+arr);
         let dValLeft = Math.abs(dVal);
         let lastLoop = false;
-        for (let i=0; i<arr.length; i++) {
-          console.log("for (let i="+i);
+        for (let i=0; i<arr.length; i++) {        
 
           let index = arr[i];
           let distTo0 = tempVals[index];
@@ -169,6 +185,74 @@ class HorizontalSliderVotePanel extends Component {
           }
         }
       }
+
+      if (dVal < 0) {
+      // Create array of indices, without current index:
+      // Example: 0,1,2,4,5,6,7,8
+      let arr = new Array(this.state.vats.length-1);
+      for (let i=0, j=0; i<this.state.vats.length; i++) {
+        if (i == this.state.vatIndex) {
+          continue;
+        };
+        arr[j++] = i;
+      }
+
+      // Filter away locked sliders
+      let temp_arr = [];
+      for (let i=0; i<arr.length; i++) {
+        let index = arr[i];
+        let isLocked = this.state.vats[index].isLocked;
+        if (!isLocked) {
+          temp_arr.push(index);
+        }
+      }
+      arr = temp_arr;
+
+      // Sort array of indices, with the closest vats        
+      // to 0 in the beginning of the array
+      arr.sort((a,b) => {
+        // return this.state.vats[a].val-this.state.vats[b].val;
+        return this.state.oldVals[b]-this.state.oldVals[a];
+      });
+      // Calculate tempVals;
+      let tempVals = new Array(this.state.vats.length);
+      for (let i=0;i<this.state.vats.length;i++) {
+        tempVals[i] = this.state.oldVals[i];
+      }
+      // console.log("Sorted array:"+arr);
+      let dValLeft = Math.abs(dVal);
+      let lastLoop = false;
+      for (let i=0; i<arr.length; i++) {
+
+        let index = arr[i];
+        let distTo100 = 100 - tempVals[index];
+        let distAll = distTo100 * (arr.length-i);
+        
+        // Calculate dist:
+        let dist = 100 - tempVals[index];
+        if (distAll > dValLeft) {
+          dist = dValLeft / (arr.length-i);
+          lastLoop = true;
+        } else {
+        }
+        // Update sliders
+        for (let j=i; j<arr.length; j++) {
+          let index2 = arr[j];
+          tempVals[index2] += dist;
+        }
+        if (lastLoop) {
+          break;
+        }
+        dValLeft -= distAll;
+      }
+      // Update vals
+      for (let i=0; i<this.state.vats.length; i++) {
+        if (i != this.state.vatIndex) {
+          oldStateCopy.vats[i].val = tempVals[i];
+        }
+      }
+    }
+
     }
 
     calcOthersToSpare(oldStateCopy, dVal) {
@@ -178,6 +262,9 @@ class HorizontalSliderVotePanel extends Component {
           if (i == this.state.vatIndex) {
             continue;
           }
+          if (this.state.vats[i].isLocked) {
+            continue;
+          }
           toSpare += oldStateCopy.oldVals[i];
         }
         return toSpare;
@@ -185,6 +272,9 @@ class HorizontalSliderVotePanel extends Component {
       if (dVal < 0) {
         for (let i=0; i<oldStateCopy.vats.length; i++) {
           if (i == this.state.vatIndex) {
+            continue;
+          }
+          if (this.state.vats[i].isLocked) {
             continue;
           }
           toSpare += (100 - oldStateCopy.oldVals[i]);
@@ -200,6 +290,14 @@ class HorizontalSliderVotePanel extends Component {
       });
     }
 
+    lockClickHandler = (index) => {
+      // Toggle isLocked
+      let oldStateCopy = {...this.state};
+      let isLocked = this.state.vats[index].isLocked;
+      oldStateCopy.vats[index].isLocked = !isLocked;
+      this.setState(oldStateCopy);
+    }
+
     renderVats() {
       return (
         <div>
@@ -209,6 +307,7 @@ class HorizontalSliderVotePanel extends Component {
                 vat={this.state.vats[index]}
                 index={index}
                 mouseDownHandler={this.mouseDownHandler} 
+                lockClickHandler={this.lockClickHandler}
               />  
             )})
           }

@@ -250,3 +250,19 @@ Interesting: If sliders are oredered from top to bottom, no bug occurs.
 Måste arrayen sorteras om?
 
 Bug solved!!! Sorted on vat.vals when should have sorted on oldVats.
+
+handleOthersSlider works in both directions!!
+
+Next: Fix LockSetter
+
+Toggles locksetter green and red borders
+
+Next, if trying to drag slider with red lock: do not move. Done!
+
+Next, do not move other sliders that are locked. Approach: in handleOtherSliders filter out arr with only unlocked indices. Works!
+
+Next recalculate toSpare - works!
+
+Next: Create router pages!
+
+Plus toSpare calculation must be refactored to not count locked sliders.

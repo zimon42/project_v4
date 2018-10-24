@@ -15,7 +15,7 @@ class LockSetter extends Component {
             <img 
                 src={lock_img} 
                 className={lockImgClasses} 
-                onClick={() => {return this.props.lockHandler(this.props.index)}} />
+                onClick={() => {return this.props.lockClickHandler(this.props.index)}} />
         </div>
     );
   }

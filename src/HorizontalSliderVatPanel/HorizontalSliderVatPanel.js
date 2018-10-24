@@ -19,7 +19,11 @@ class HorizontalSliderVatPanel extends Component {
                     index={this.props.index}
                     val={this.props.vat.val}
                 /> 
-                <LockSetter />              
+                <LockSetter 
+                    index={this.props.index}
+                    isLocked={this.props.vat.isLocked}
+                    lockClickHandler={this.props.lockClickHandler}
+                />
             </div>
         );
     }
