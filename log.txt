@@ -274,3 +274,28 @@ Solution: You have to wrap routes in a div
 Working! The other error of not being able to find modules are gone.
 
 Working on HomePage component
+
+Vote link works!
+
+Removed comments to show all ten vats but still only shows the six vats. Solution: Restarted the server
+
+How do you deploy a react application togheter with php?
+https://www.youtube.com/watch?v=BPGIrau9dW4
+
+Start by deploying a react app on the web hotel
+
+$arr = array("name" => "simon", "age" => "42");
+echo json_encode($arr);
+
+Use Netlify
+https://www.youtube.com/watch?v=lCcBEDPTk4o
+
+https://www.youtube.com/watch?v=yU5DYccb77A
+
+"How do I host this?"
+https://medium.freecodecamp.org/i-built-this-now-what-how-to-deploy-a-react-app-on-a-digitalocean-droplet-662de0fe3f48
+
+https://www.fullstackreact.com/30-days-of-react/day-27/
+
+https://codebrahma.com/deploy-react-application-depth-overview-various-options-deploy/
+

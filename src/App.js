@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import NumberScrollerVotePanel from './NumberScrollerVotePanel/NumberScrollerVotePanel';
-import HorizontalSliderVotePanel from './HorizontalSliderVotePanel/HorizontalSliderVotePanel';
 import './App.css';
 
 import {BrowserRouter as Router} from 'react-router-dom';

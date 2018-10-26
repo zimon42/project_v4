@@ -4,8 +4,8 @@
     margin-left:5px;
 }
 
-.LockSetterImage {
-    width:40px;
+.LockSetterButton {
+    width:45px;
     height:40px;
     /*position:relative;*/
     /*top:6px;*/
@@ -17,4 +17,5 @@
 
 .LockSetterIsLockedTrue {
     border:3px solid red;
+    background-color: pink;
 }
