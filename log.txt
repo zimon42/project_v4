@@ -299,3 +299,37 @@ https://www.fullstackreact.com/30-days-of-react/day-27/
 
 https://codebrahma.com/deploy-react-application-depth-overview-various-options-deploy/
 
+Next: Create a simple helloworld react app and try to deploy it (to githubpages?).
+
+create-react-app helloworld
+
+Created a remote repository "helloworld" on github. 
+
+Deploy on gitpages:
+https://www.youtube.com/watch?v=7yA7BGos2KQ&t=114s
+
+Very good:
+https://www.youtube.com/watch?v=1Y-PqBH-htk
+
+1. In package.json add:
+"homepage": "https://zimon42.github.io/helloworld",
+at top level.
+
+2. Add "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+under scripts
+
+3. Install gh-pages:
+npm install --save gh-pages
+
+4. Run deploy:
+npm run deploy
+
+5. Look at homepage: https://zimon42.github.io/helloworld
+
+Hello world worked!
+
+Tried deploying project_v4. Displays nothing. No errors.
+
+Is it because im not using Hastroute as desribed in https://www.youtube.com/watch?v=7yA7BGos2KQ&t=114s
+?
