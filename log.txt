@@ -335,3 +335,5 @@ Is it because im not using Hastroute as desribed in https://www.youtube.com/watc
 ?
 
 Woo! Added, committed and pushed everything, and then deployed again and now the "Project v4" title shows. Try putting routes back. If it doesnt work, then use Hashrouter.
+
+Ok doesnt work. Now use hashrouter
