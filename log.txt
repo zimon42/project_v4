@@ -333,3 +333,5 @@ Tried deploying project_v4. Displays nothing. No errors.
 
 Is it because im not using Hastroute as desribed in https://www.youtube.com/watch?v=7yA7BGos2KQ&t=114s
 ?
+
+Woo! Added, committed and pushed everything, and then deployed again and now the "Project v4" title shows. Try putting routes back. If it doesnt work, then use Hashrouter.

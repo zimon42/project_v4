@@ -13,20 +13,15 @@ import VotePage from './VotePage/VotePage';
 
 class App extends Component {
 
-  /*
-  <Router>
-  <div>
-    <Route path="/" strict exact component={HomePage} />
-    <Route path="/admin/" strict exact component={AdminPage} />
-    <Route path="/vote/" strict exact component={VotePage} />
-  </div>
-  </Router>
-  */
-
   render() {
     return (
-      <h1>Project v4</h1>
-      
+      <Router>
+      <div>
+        <Route path="/" strict exact component={HomePage} />
+        <Route path="/admin/" strict exact component={AdminPage} />
+        <Route path="/vote/" strict exact component={VotePage} />
+      </div>
+      </Router>          
     );
   }
 }
