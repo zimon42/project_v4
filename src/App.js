@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-// import {BrowserRouter as Router} from 'react-router-dom';
-// import Route from 'react-router-dom/Route';
+import {BrowserRouter as Router} from 'react-router-dom';
+import Route from 'react-router-dom/Route';
 
 import HomePage from './HomePage/HomePage';
 import AdminPage from './AdminPage/AdminPage';
