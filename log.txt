@@ -337,3 +337,55 @@ Is it because im not using Hastroute as desribed in https://www.youtube.com/watc
 Woo! Added, committed and pushed everything, and then deployed again and now the "Project v4" title shows. Try putting routes back. If it doesnt work, then use Hashrouter.
 
 Ok doesnt work. Now use hashrouter
+
+Didnt work, empty page
+
+Ohh now it works without havnig done anything, seems to be a little delay for the changes to push onto the server!!
+
+My address is:
+https://zimon42.github.io/project_v4/#/
+
+Make test app, helloworld2. Presses button, gets jquery get request and prints message.
+
+https://www.youtube.com/watch?v=rNEle8zsoWg&t=178s
+
+npm install jquery --save
+
+https://www.w3schools.com/jquery/jquery_ajax_get_post.asp
+
+php file:
+http://localhost/miedweb/helloworld2/src/helloworld2.php
+
+Failed to load http://localhost/miedweb/helloworld2/src/helloworld2.php: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:3000' is therefore not allowed access.
+
+https://www.youtube.com/watch?v=829ZO-bAvPA
+
+"To make it avaialbe to all ... you need to enable the CORS"
+"Cross Origin Resource Sharing"
+
+https://enable-cors.org/server_php.html
+header("Access-Control-Allow-Origin: *");
+
+Works!
+
+React:
+  clickHandler = () => {
+    $.post("http://localhost/miedweb/helloworld2/src/helloworld2.php",
+    {
+        name: "Donald Duck",
+        city: "Duckburg"
+    },
+    function(data, status){
+        let obj = JSON.parse(data);
+        // alert("Data: " + data + "\nStatus: " + status);
+        alert(obj.message);
+    });
+  }
+
+Php:
+<?php
+header("Access-Control-Allow-Origin: *");
+// echo "Hello world";
+$arr = array("message" => "Hello World!!!");
+echo json_encode($arr);
+?>
