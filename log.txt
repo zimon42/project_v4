@@ -389,3 +389,5 @@ header("Access-Control-Allow-Origin: *");
 $arr = array("message" => "Hello World!!!");
 echo json_encode($arr);
 ?>
+
+Added IKEA header and insructions.

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HorizontalSliderVatPanel from '../HorizontalSliderVatPanel/HorizontalSliderVatPanel';
 import Config from '../config';
+import './VotePage.css';
 
 class VotePage extends Component {
 
@@ -300,7 +301,7 @@ class VotePage extends Component {
 
     renderVats() {
       return (
-        <div>
+        <div>          
           {
             this.state.vats.map( (val, index) => {return (
               <HorizontalSliderVatPanel 
@@ -319,7 +320,12 @@ class VotePage extends Component {
     render() {
       return (
         <div>
+            <div className="VotePageTitle">IKEA's momsröstningsapplikation</div>
             {this.renderVats()}
+            <div className="VotePageInstructions">
+              Instruktioner: Panelen visar moms för åtta olika varor. Dra i reglagen för att ändra momsen på deesa varor. De andra reglagen ändrar sig hela tiden automatiskt så att summan hela tiden är konstant. Klicka på lås-knappen till höger om varje vara, om du inte vill att den ska ändras automatiskt. Klicka på knappen här under är du är klar
+            </div>
+            <center><button id="VotePageVoteButton">Röstat klart</button></center>
         </div>
       );
     }
