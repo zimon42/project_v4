@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import HorizontalSliderVatPanel from '../HorizontalSliderVatPanel/HorizontalSliderVatPanel';
 import Config from '../config';
 import './VotePage.css';
+import $ from 'jquery';
 
 class VotePage extends Component {
 
     state = {
         vats: [
-          {title: "Läsk", val: 25, img:"soda2.jpg", isLocked: false},
-          {title: "Kaffe", val: 25, img:"coffee.png", isLocked: false},
-          {title: "Mjölk", val: 25, img:"milk.jpg", isLocked: false},
-          {title: "Choklad", val: 25, img:"hot_chokolate.jpg", isLocked: false},
-          {title: "Rejuvelac", val: 25, img:"rejuvelac.jpg", isLocked: false},
-          {title: "Svart te", val: 25, img:"black_tea.png", isLocked: false},
-          {title: "Grönt te", val: 25, img:"green_tea.jpg", isLocked: false},
-          {title: "Roibos", val: 25, img:"roibos.jpg", isLocked: false}
+          {id:0, title: "Läsk", val: 25, img:"soda2.jpg", isLocked: false},
+          {id:1, title: "Kaffe", val: 25, img:"coffee.png", isLocked: false},
+          {id:2, title: "Mjölk", val: 25, img:"milk.jpg", isLocked: false},
+          {id:3, title: "Choklad", val: 25, img:"hot_chokolate.jpg", isLocked: false},
+          {id:4, title: "Rejuvelac", val: 25, img:"rejuvelac.jpg", isLocked: false},
+          {id:5, title: "Svart te", val: 25, img:"black_tea.png", isLocked: false},
+          {id:6, title: "Grönt te", val: 25, img:"green_tea.jpg", isLocked: false},
+          {id:7, title: "Roibos", val: 25, img:"roibos.jpg", isLocked: false}
           /*
           {title: "Buljong", val: 25, img:"broth.jpg", isLocked: false},
           {title: "Mineralvatten", val: 25, img:"mineral_water2.png", isLocked: false}
@@ -299,6 +300,24 @@ class VotePage extends Component {
       this.setState(oldStateCopy);
     }
 
+    voteDoneHandler = () => {
+      // alert("voteDoneHandler");
+      $.post(Config.BACKEND_ENTRY_FILE,
+      { 
+        action:"done_vote",
+        vats:this.state.vats
+      },
+      // {
+      //    name: "Donald Duck",
+      //    city: "Duckburg"
+      // },
+      function(data, status){
+          // let obj = JSON.parse(data);
+          alert("Data: " + data + "\nStatus: " + status);
+          // alert(obj.message);
+      });
+    }
+
     renderVats() {
       return (
         <div>          
@@ -325,7 +344,7 @@ class VotePage extends Component {
             <div className="VotePageInstructions">
               Instruktioner: Panelen visar moms för åtta olika varor. Dra i reglagen för att ändra momsen på deesa varor. De andra reglagen ändrar sig hela tiden automatiskt så att summan hela tiden är konstant. Klicka på lås-knappen till höger om varje vara, om du inte vill att den ska ändras automatiskt. Klicka på knappen här under är du är klar
             </div>
-            <center><button id="VotePageVoteButton">Röstat klart</button></center>
+            <center><button id="VotePageVoteButton" onClick={this.voteDoneHandler}>Röstat klart</button></center>
         </div>
       );
     }

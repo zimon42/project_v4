@@ -1,5 +1,8 @@
 class Config {
 
+    // 
+    static BACKEND_ENTRY_FILE = "http://localhost/miedweb/project_v4/src/backend/index.php";
+
     // If you change these values, you need to update 
     // the HorizontalSlider.css
     static SLIDER_WIDTH = 1000;

@@ -391,3 +391,8 @@ echo json_encode($arr);
 ?>
 
 Added IKEA header and insructions.
+
+{vats:this.state.vats}
+$_POST["vats"]
+
+Working on vats php
