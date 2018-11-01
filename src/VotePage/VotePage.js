@@ -332,21 +332,27 @@ class VotePage extends Component {
 
     voteDoneHandler = () => {
       // alert("voteDoneHandler");
+
+      // Extract id's and vals
+      let vals = this.state.vats.map( (elem,index) => {
+        return {id: elem.id, val: elem.val};
+      });
+
+      console.log("voteDoneHandler vals:"+JSON.stringify(vals));
+      // return;
+
       $.post(Config.BACKEND_ENTRY_FILE,
       { 
         action:"done_vote",
-        vats:this.state.vats
+        vals:vals
       },
-      // {
-      //    name: "Donald Duck",
-      //    city: "Duckburg"
-      // },
       function(data, status){
           // let obj = JSON.parse(data);
           alert("Data: " + data + "\nStatus: " + status);
           // alert(obj.message);
       });
     }
+    
 
     renderVats() {
 

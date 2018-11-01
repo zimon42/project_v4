@@ -78,7 +78,7 @@ class PollHandlerDb {
 		global $db_conn;
 		$sql = "INSERT INTO Vats (title, start_perc, image_src) VALUES (".
 			"'".$vat->title."',".$vat->startPerc.",'".$vat->imageSrc."')";
-		echo $sql;
+		echo $sql."<br>";
 		$db_conn->query($sql) || die("PollHandlerDb::saveToVatTable error: ".$db_conn->error());
 	}	
 	

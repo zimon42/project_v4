@@ -49,18 +49,18 @@ if ($db_conn->query($sql) === TRUE) {
 
 UserHandler::addPredefinedUsers();
 
+*/
+
 $db_conn->query("DROP TABLE Votes");
 
 // Vote table
 $sql = "CREATE TABLE Votes (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-poll_id INT(6),
-user_pers_number VARCHAR(100) NOT NULL, 
 date DATETIME NOT NULL
 )";
 
 if ($db_conn->query($sql) === TRUE) {
-    echo "Table Votes created successfully";
+    echo "Table Votes created successfully<br>";
 } else {
     echo "Error creating Votes table: " . $db_conn->error;
 }
@@ -72,7 +72,7 @@ $sql = "CREATE TABLE VoteVats (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 vote_id INT(6),
 vat_id INT(6),
-perc INT(6)
+perc DECIMAL(10,5)
 )";
 
 if ($db_conn->query($sql) === TRUE) {
@@ -80,8 +80,6 @@ if ($db_conn->query($sql) === TRUE) {
 } else {
     echo "Error creating VoteVats table: " . $db_conn->error;
 }
-
-*/
 
 $db_conn->close();
 
