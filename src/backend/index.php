@@ -1,8 +1,8 @@
 <?php
     header("Access-Control-Allow-Origin: *");
 
+    include_once("GetVatsHandler.php");
     include_once("DoneVoteHandler.php");
-    include_once("PollHandlerDb.php")
 
     $action = $_POST["action"];
     // echo "Hello world";
@@ -12,6 +12,10 @@
 
     if ($action == "done_vote") {
         DoneVoteHandler::handle();
+    }
+
+    if ($action == "get_vats") {
+        GetVatsHandler::handle();
     }
 
     // echo json_encode($_POST["vats"]);

@@ -7,6 +7,8 @@ import $ from 'jquery';
 class VotePage extends Component {
 
     state = {
+        
+        /*
         vats: [
           {id:0, title: "Läsk", val: 25, img:"soda2.jpg", isLocked: false},
           {id:1, title: "Kaffe", val: 25, img:"coffee.png", isLocked: false},
@@ -15,12 +17,13 @@ class VotePage extends Component {
           {id:4, title: "Rejuvelac", val: 25, img:"rejuvelac.jpg", isLocked: false},
           {id:5, title: "Svart te", val: 25, img:"black_tea.png", isLocked: false},
           {id:6, title: "Grönt te", val: 25, img:"green_tea.jpg", isLocked: false},
-          {id:7, title: "Roibos", val: 25, img:"roibos.jpg", isLocked: false}
-          /*
-          {title: "Buljong", val: 25, img:"broth.jpg", isLocked: false},
-          {title: "Mineralvatten", val: 25, img:"mineral_water2.png", isLocked: false}
-          */
+          {id:7, title: "Roibos", val: 25, img:"roibos.jpg", isLocked: false},          
+          {id:8, title: "Buljong", val: 25, img:"broth.jpg", isLocked: false},
+          {id:9, title: "Mineralvatten", val: 25, img:"mineral_water2.png", isLocked: false}
+          
         ],
+        */
+
         mouseIsDown: false,
         vatIndex: 0,
         mouseDownX: 0,
@@ -50,6 +53,7 @@ class VotePage extends Component {
     componentDidMount = () => {
       document.body.addEventListener('mousemove', this.mouseMoveHandler);
       document.body.addEventListener('mouseup', this.mouseUpHandler);
+      this.loadVats();
     }
 
     componentWillUnmount = () => {
@@ -300,6 +304,32 @@ class VotePage extends Component {
       this.setState(oldStateCopy);
     }
 
+    loadVats = () => {
+      $.post(Config.BACKEND_ENTRY_FILE,
+        { 
+          action:"get_vats"
+        },
+        (data, status) => {
+            console.log("Get vats: " + data + "\nStatus: " + status);
+            let vatsArr = JSON.parse(data);
+
+            let stateCopy = {...this.state};            
+            stateCopy["vats"] = vatsArr;
+            
+            // Add isLocked:false to all vats
+            for (let i=0; i<vatsArr.length; i++) {
+              stateCopy["vats"][i].isLocked = false;
+            }
+
+            // parseInt
+            for (let i=0; i<vatsArr.length; i++) {
+              stateCopy["vats"][i].val = parseInt(stateCopy["vats"][i].val);
+            }
+
+            this.setState( stateCopy );
+        });  
+    }
+
     voteDoneHandler = () => {
       // alert("voteDoneHandler");
       $.post(Config.BACKEND_ENTRY_FILE,
@@ -319,6 +349,13 @@ class VotePage extends Component {
     }
 
     renderVats() {
+
+      /*
+      if (this.state.vats == undefined) {
+        return "Laddar data";
+      }
+      */
+
       return (
         <div>          
           {
@@ -328,6 +365,7 @@ class VotePage extends Component {
                 index={index}
                 mouseDownHandler={this.mouseDownHandler} 
                 lockClickHandler={this.lockClickHandler}
+                key={index}
               />  
             )})
           }
@@ -337,6 +375,11 @@ class VotePage extends Component {
     }
 
     render() {
+
+      if (this.state.vats == undefined) {
+        return <div>Laddar sida...</div>
+      }
+      
       return (
         <div>
             <div className="VotePageTitle">IKEA's momsröstningsapplikation</div>

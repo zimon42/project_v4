@@ -396,3 +396,32 @@ Added IKEA header and insructions.
 $_POST["vats"]
 
 Working on vats php
+
+Restarted computer. Dragging slides was slow. Noticed that writing text in Chrome textfield also was slow. Then it became fast again. So just have to wait for a while after starting the computer.
+
+Create table Vats yielded sql syntax error. Solved: removed comma before closing parenthesis.
+
+Syntax error in addVat. Solved: Missing comma after 12.
+
+Add vats to table works. Next get Vats
+
+componentDidMount not firing. But componentWillMount works. Is it because the warnings? Create small app "helloworld3" and see if it works there.
+Solved: Ohhhh! Had defined componentDidMount upstairs in the code to include the mousemove listeneres.
+
+Ajax call returns "Get Vats!!!"
+
+PollHandlerDb error, pollId was still there.
+
+Hm, id=1..8 from database. But we want 0..7. Does it matter?
+
+Removed vats in state upstairs in the code. Get vats from backend. Get error: TypeError: Canno read property map of undefined, probably because vats have not been recieved yet as the ajax call is asynchronous. 
+
+Error: cannot find green_tea.png. Solved: should be .jpg
+Still error after changing init_vats.php. Solve: Must create tables again. Lets create a init_server script
+
+Hm yields error. But when run on its own, init_vats works. But not inside the init_server script. So must run separately until we fix it.
+
+Loaded vats, but spazz out. Could it be that 12 is inside "". 
+Woo fixed it! Call parseInt on all vals in vat array.
+
+Load vats now complete. Next handle vote

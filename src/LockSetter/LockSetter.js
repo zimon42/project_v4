@@ -3,13 +3,14 @@ import lock_img from './lock.png';
 import "./LockSetter.css";
 
 class LockSetter extends Component {
+
   render() {
 
     let lockButtonClasses = "LockSetterButton ";
     lockButtonClasses += this.props.isLocked ?
     "LockSetterIsLockedTrue" :
     "LockSetterIsLockedFalse";
-
+    
     return (
         <div className="LockSetter">
             <button 
