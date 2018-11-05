@@ -12,10 +12,9 @@ class VoteHandlerDb {
 		$db_conn->query($sql) || die("VoteHandlerDb::saveToVoteTable error: ".$db_conn->error());
 	}
 	
-	/* 
 	public static function loadVote($voteId) {
 		global $db_conn;
-		$sql = "SELECT id, poll_id, user_pers_number, date FROM Votes WHERE id=".$voteId;
+		$sql = "SELECT id, date FROM Votes WHERE id=".$voteId;
 		$result = $db_conn->query($sql); 
 		$result || die("VoteHandlerDb::loadVote error: ".$db_conn->error());
 		if ($result->num_rows == 0) {
@@ -24,16 +23,14 @@ class VoteHandlerDb {
 		$row = $result->fetch_assoc();
 		$vote = new Vote();
 		$vote->id = $row["id"];
-		$vote->pollId = $row["poll_id"];
-		$vote->userPersNumber = $row["user_pers_number"];
 		$vote->voteDate = $row["date"];
 		return $vote;
 	}
 	
-	public static function loadVotes($pollId) {
+	public static function loadVotes() {
 		global $db_conn;
 		$list = array();
-		$sql = "SELECT * FROM Votes WHERE poll_id=".$pollId;
+		$sql = "SELECT * FROM Votes";
 		$result = $db_conn->query($sql);
 		$result || die("VoteHandlerDb::loadVotes error: ".$db_conn->error());
 		while($row = $result->fetch_assoc()) {
@@ -41,7 +38,6 @@ class VoteHandlerDb {
 		}
 		return $list;
 	}	
-	*/
 
 	public static function saveToVoteVatTable($voteId, $vatId, $perc) {
 		global $db_conn;

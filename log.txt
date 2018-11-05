@@ -439,3 +439,30 @@ Ah had to use two args: DECIMAL(10,5). Check w3schools for more details. 5 means
 Done for today, next make "Tack för din röst" page.
 
 Thankyou screen seems to be working, but doesnt show "Laddar data" the second time.
+
+Next fix Escape-key. What is the js name for the keypress event? "keypress". How do I check that it was the escape key that was pressed?
+
+Caught other bug: TypeError: Cannot read property '0' of undefined, row 70, 
+mouseMoveHandler = (e) => {
+  if (this.state.vats[this.state.vatIndex].isLocked.
+
+So problem is moving mouse before the vats data has loaded. Check in beginning of moueMoveHandler if vats exist. If not, return;
+
+Escape key not working. Deprecated code? https://stackoverflow.com/questions/3369593/how-to-detect-escape-key-press-with-pure-js-or-jquery. THough that is jquery, but maybe i can use that instead
+
+Escape key still not working. keydown works however. Lets use that instead
+
+Now, how do I redirect back to portal when user has pressed escape key?
+https://medium.com/@anneeb/redirecting-in-react-4de5e517354a
+
+However cannot import. Found other page:
+import { Redirect } from 'react-router'
+https://stackoverflow.com/questions/43230194/how-to-use-redirect-in-the-new-react-router-dom-of-reactjs
+Still not working. Ooo, put the import in App.js but should be in VotePage.js
+
+Ooo works! Redirect to portal
+
+How should we design the admin page?
+
+Prints history dates to console
+

@@ -4,6 +4,8 @@ import Config from '../config';
 import './VotePage.css';
 import $ from 'jquery';
 
+import { Redirect } from 'react-router';
+
 class VotePage extends Component {
 
     state = {
@@ -28,7 +30,8 @@ class VotePage extends Component {
         vatIndex: 0,
         mouseDownX: 0,
         oldVals: null,
-        votePageState: "loading_vats_data"
+        votePageState: "loading_vats_data",
+        returnToPortal: false
     }
 
     mouseDownHandler = (e,index) => {
@@ -54,15 +57,21 @@ class VotePage extends Component {
     componentDidMount = () => {
       document.body.addEventListener('mousemove', this.mouseMoveHandler);
       document.body.addEventListener('mouseup', this.mouseUpHandler);
+      // document.body.addEventListener('keypress', this.keyPressHandler);
+      $('body').keydown(this.keyPressHandler);
       this.loadVats();
     }
 
     componentWillUnmount = () => {
       document.body.removeEventListener('mousemove', this.mouseMoveHandler);
       document.body.removeEventListener('mouseup', this.mouseUpHandler);
+      // document.body.removeEventListener('keypress', this.keyPressHandler);
     }
     
     mouseMoveHandler = (e) => {
+
+      // Solve bug that person moves mouse before vats have loaded:
+      if (!this.state.vats) return; 
 
       // Do not move slider that is locked
       if (this.state.vats[this.state.vatIndex].isLocked) {
@@ -365,6 +374,28 @@ class VotePage extends Component {
       setTimeout( () => {this.loadVats();}, 3000);
     }
 
+    /*
+    keyPressHandler = (evt) => {
+      evt = evt || window.event;
+      alert("key press, evt keyCode="+evt.keyCode);
+      if (evt.keyCode == 27) {
+          alert('Esc key pressed.');
+      }  
+    }
+    */
+
+    keyPressHandler = (evt) => {
+      // alert("key press, evt which="+evt.key);
+      if (evt.key == "Escape") {
+          // alert('Esc key pressed.');
+          this.returnToPortal();
+      }  
+    }
+
+    returnToPortal() {
+      this.setState({returnToPortal: true});
+    }
+
     renderVats() {
 
       /*
@@ -392,6 +423,10 @@ class VotePage extends Component {
     }
 
     render() {
+
+      if (this.state.returnToPortal) {
+        return <Redirect to='/' />
+      }
 
       if (this.state.votePageState == "loading_vats_data") {
         return <div>Laddar data...</div>

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 // import {BrowserRouter as Router} from 'react-router-dom';
+
 import {HashRouter as Router, Switch} from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 
