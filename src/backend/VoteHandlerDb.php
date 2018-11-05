@@ -45,7 +45,6 @@ class VoteHandlerDb {
 		$db_conn->query($sql) || die("VoteHandlerDb::saveToVoteVatTable error: ".$db_conn->error());
 	}
 	
-	/*
 	public static function loadVoteVat($voteVatId) {
 		global $db_conn;
 		$sql = "SELECT vote_id, vat_id, perc FROM VoteVats WHERE id=".$voteVatId;
@@ -75,6 +74,8 @@ class VoteHandlerDb {
 		return $list;
 	}	
 
+	/*
+	
 	public static function editInVoteVatTable($voteId, $vatId, $perc) {
 		global $db_conn;
 		$sql = "UPDATE VoteVats SET perc={$perc} WHERE vote_id={$voteId} AND vat_id={$vatId}";

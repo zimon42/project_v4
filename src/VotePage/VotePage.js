@@ -392,7 +392,7 @@ class VotePage extends Component {
       }  
     }
 
-    returnToPortal() {
+    returnToPortal = () => {
       this.setState({returnToPortal: true});
     }
 
@@ -440,7 +440,10 @@ class VotePage extends Component {
               <div className="VotePageInstructions">
                 Instruktioner: Panelen visar moms för åtta olika varor. Dra i reglagen för att ändra momsen på deesa varor. De andra reglagen ändrar sig hela tiden automatiskt så att summan hela tiden är konstant. Klicka på lås-knappen till höger om varje vara, om du inte vill att den ska ändras automatiskt. Klicka på knappen här under är du är klar
               </div>
-              <center><button id="VotePageVoteButton" onClick={this.voteDoneHandler}>Röstat klart</button></center>
+              <center>
+                <button id="VotePageVoteButton" onClick={this.voteDoneHandler}>Röstat klart</button>
+                <button id="VotePageBackButton" onClick={this.returnToPortal}>Tillbaka</button>
+              </center>
           </div>
         );
       }

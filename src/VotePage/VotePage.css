@@ -21,6 +21,14 @@
     margin-top:10px;
 }
 
+#VotePageBackButton {
+    width:100px;
+    height:40px;
+    text-align:center;
+    margin-top:10px;
+    margin-left:5px;
+}
+
 .VotePageThankyouDiv {
     top:0px;
     left:0px;

@@ -23,10 +23,21 @@ class AdminPage extends Component {
         },
         (data, status) => {
             console.log("Get history: " + data + "\nStatus: " + status);
+            this.setState({
+                adminPageState: "showing_history",
+                historyData: JSON.parse(data)
+            });
         });
     }
 
     render() {
+
+        let content = "Content";
+
+        if (this.state.adminPanelState == "showing_history") {
+            // content = <HistoryList data={this.state.historyData} />
+        }
+
         return (
             <div className="AdminPagePanel">
                 <h2 className="header">Admin-panelen</h2>
@@ -34,7 +45,7 @@ class AdminPage extends Component {
                 <button>Visa statistik</button>
                 <button>Tillbaka</button>
                 <hr />
-                <div className="contentPanel"></div>
+                <div className="contentPanel">{content}</div>
             </div>
         );
     }
