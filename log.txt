@@ -437,3 +437,5 @@ Hm vals saved as ints in database despite setting it to decimal.
 Ah had to use two args: DECIMAL(10,5). Check w3schools for more details. 5 means 5 digits to the right of the decimal point. First had 3 as first argment as 100 has 3 digits. But got error that first argument must be greated than second argument.
 
 Done for today, next make "Tack för din röst" page.
+
+Thankyou screen seems to be working, but doesnt show "Laddar data" the second time.

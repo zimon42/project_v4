@@ -27,7 +27,8 @@ class VotePage extends Component {
         mouseIsDown: false,
         vatIndex: 0,
         mouseDownX: 0,
-        oldVals: null
+        oldVals: null,
+        votePageState: "loading_vats_data"
     }
 
     mouseDownHandler = (e,index) => {
@@ -305,6 +306,9 @@ class VotePage extends Component {
     }
 
     loadVats = () => {
+
+      this.setState({votePageState: "loading_vats_data"});
+
       $.post(Config.BACKEND_ENTRY_FILE,
         { 
           action:"get_vats"
@@ -326,6 +330,8 @@ class VotePage extends Component {
               stateCopy["vats"][i].val = parseInt(stateCopy["vats"][i].val);
             }
 
+            stateCopy.votePageState = "showing_vote_panel";
+
             this.setState( stateCopy );
         });  
     }
@@ -346,13 +352,18 @@ class VotePage extends Component {
         action:"done_vote",
         vals:vals
       },
-      function(data, status){
+      (data, status) => {
           // let obj = JSON.parse(data);
-          alert("Data: " + data + "\nStatus: " + status);
+          // alert("Data: " + data + "\nStatus: " + status);
+          this.showThankyouScreen();
           // alert(obj.message);
       });
     }
-    
+
+    showThankyouScreen = () => {
+      this.setState({votePageState: "showing_thankyou_screen"});
+      setTimeout( () => {this.loadVats();}, 3000);
+    }
 
     renderVats() {
 
@@ -382,20 +393,36 @@ class VotePage extends Component {
 
     render() {
 
-      if (this.state.vats == undefined) {
-        return <div>Laddar sida...</div>
+      if (this.state.votePageState == "loading_vats_data") {
+        return <div>Laddar data...</div>
       }
       
+      if (this.state.votePageState == "showing_vote_panel") {
+        return (
+          <div>
+              <div className="VotePageTitle">IKEA's momsröstningsapplikation</div>
+              {this.renderVats()}
+              <div className="VotePageInstructions">
+                Instruktioner: Panelen visar moms för åtta olika varor. Dra i reglagen för att ändra momsen på deesa varor. De andra reglagen ändrar sig hela tiden automatiskt så att summan hela tiden är konstant. Klicka på lås-knappen till höger om varje vara, om du inte vill att den ska ändras automatiskt. Klicka på knappen här under är du är klar
+              </div>
+              <center><button id="VotePageVoteButton" onClick={this.voteDoneHandler}>Röstat klart</button></center>
+          </div>
+        );
+      }
+
+      if (this.state.votePageState == "showing_thankyou_screen") {
+        return (
+          <div className="VotePageThankyouDiv">
+            Din röst har registrerats<br />
+            Tack för din medverkan!
+          </div>
+        )
+      }
+
       return (
-        <div>
-            <div className="VotePageTitle">IKEA's momsröstningsapplikation</div>
-            {this.renderVats()}
-            <div className="VotePageInstructions">
-              Instruktioner: Panelen visar moms för åtta olika varor. Dra i reglagen för att ändra momsen på deesa varor. De andra reglagen ändrar sig hela tiden automatiskt så att summan hela tiden är konstant. Klicka på lås-knappen till höger om varje vara, om du inte vill att den ska ändras automatiskt. Klicka på knappen här under är du är klar
-            </div>
-            <center><button id="VotePageVoteButton" onClick={this.voteDoneHandler}>Röstat klart</button></center>
-        </div>
+        <div>Unknown state</div>
       );
+
     }
     
 }
