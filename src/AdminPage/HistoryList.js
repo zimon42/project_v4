@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HistoryItem from './HistoryItem';
+import './History.css';
 
 class HistoryList extends Component {
 
@@ -38,7 +39,7 @@ class HistoryList extends Component {
 
     render() {
         return (
-            <div>
+            <div className='HistoryList'>
                 <table><tbody>{this.renderHistoryRows()}</tbody></table>
             </div>
         );

@@ -5,10 +5,12 @@ class HistoryItem extends Component {
 
     render() {
         return (
-            <div>
-                <Diagram diagramData={this.props.itemData.vote_vats} /><br />
-                Röst {this.props.itemIndex+1} av {this.props.itemTot} <br /> 
-                {this.props.itemData.date}
+            <div>                
+                <div class='HistoryItemHeader'>
+                    Röst <b>{this.props.itemIndex+1}</b> av {this.props.itemTot} <br /> 
+                    {this.props.itemData.date}                    
+                </div>
+                <Diagram diagramData={this.props.itemData.vote_vats} />
             </div>
         );
     }

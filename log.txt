@@ -491,3 +491,5 @@ Next add colors
 Oh no empty history! create_tables erased old history items
 
 Displays colors!!
+
+Now history looks real nice, with date header!
