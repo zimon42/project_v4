@@ -27,6 +27,7 @@ class GetHistoryHandler {
                 $returnVoteVat = array();
                 $returnVoteVat["val"] = $voteVat->perc;
                 $returnVoteVat["title"] = $vat->title;
+                $returnVoteVat["color"] = $vat->color;
                 array_push($voteVatReturnArr, $returnVoteVat);
             }        
 

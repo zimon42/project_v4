@@ -76,26 +76,27 @@ class PollHandlerDb {
 
 	public static function saveToVatTable($vat) {
 		global $db_conn;
-		$sql = "INSERT INTO Vats (title, start_perc, image_src) VALUES (".
-			"'".$vat->title."',".$vat->startPerc.",'".$vat->imageSrc."')";
+		$sql = "INSERT INTO Vats (title, start_perc, image_src, color) VALUES (".
+			"'".$vat->title."',".$vat->startPerc.",'".$vat->imageSrc."','".$vat->color."')";
 		echo $sql."<br>";
 		$db_conn->query($sql) || die("PollHandlerDb::saveToVatTable error: ".$db_conn->error());
 	}	
 	
 	public static function loadVat($id) {
 		global $db_conn;
-		$sql = "SELECT id, title, start_perc, image_src FROM Vats WHERE id=".$id;
+		$sql = "SELECT id, title, start_perc, image_src, color FROM Vats WHERE id=".$id;
 		$result = $db_conn->query($sql); 
 		$result || die("PollHandlerDb::loadVat error: ".$db_conn->error());
 		if ($result->num_rows == 0) {
 			die("PollHandlerDb::loadVat error: No vat with such id in database");
 		}
 		$row = $result->fetch_assoc();
-		$vat = new Vat("",0,"");
+		$vat = new Vat("",0,"", "");
 		$vat->id = $row["id"];
 		$vat->title = $row["title"];
 		$vat->startPerc = $row["start_perc"];		
 		$vat->imageSrc = $row["image_src"];
+		$vat->color = $row["color"];
 		return $vat;
 	}
 	
@@ -132,7 +133,13 @@ class PollHandlerDb {
 		return $db_conn->insert_id;
 	}
 
-
+	public static function getNumVats() {
+		global $db_conn;
+		$sql = "SELECT * FROM Vats";
+		$result = $db_conn->query($sql); 
+		$result || die("PollHandlerDb::getNumVats error: ".$db_conn->error());
+		return $result->num_rows;
+	}
 	
 }
 

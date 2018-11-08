@@ -3,18 +3,23 @@
 include_once("PollHandlerDb.php");
 include_once("Vat.php");
 
-function addVat($title, $startPerc, $imageSrc) {
-    PollHandlerDb::saveToVatTable(new Vat($title, $startPerc, $imageSrc));
+function addVat($title, $startPerc, $imageSrc, $color) {
+    PollHandlerDb::saveToVatTable(new Vat($title, $startPerc, $imageSrc, $color));
 }
 
-addVat("Läsk", 12, "soda2.jpg");
-addVat("Kaffe", 12, "coffee.png");
-addVat("Mjölk", 12, "milk.jpg");
-addVat("Choklad", 12, "hot_chokolate.jpg");
-addVat("Rejuvelac", 12, "rejuvelac.jpg");
-addVat("Svart te", 12, "black_tea.png");
-addVat("Grönt te", 12, "green_tea.jpg");
-addVat("Roibos", 12, "roibos.jpg");
+addVat("Läsk", 12, "soda2.jpg", "#FF5733");
+addVat("Kaffe", 12, "coffee.png", "#641E16");
+addVat("Mjölk", 12, "milk.jpg", "#FEF9E7");
+addVat("Choklad", 12, "hot_chokolate.jpg", "#935116");
+addVat("Rejuvelac", 12, "rejuvelac.jpg", "#FEF9E7");
+addVat("Svart te", 12, "black_tea.png", "#F5B7B1");
+addVat("Grönt te", 12, "green_tea.jpg", "#A9DFBF");
+addVat("Roibos", 12, "roibos.jpg", "#D98880");
+
+/*
+addVat("Buljong", 12, "no_image.jpg", "#FDEDEC");
+addVat("Mineralvatten", 12, "no_image.jpg", "#F7F9F9");
+*/
 
 echo "Added vats<br>";
 

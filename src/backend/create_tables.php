@@ -23,7 +23,8 @@ $sql = "CREATE TABLE Vats (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 title VARCHAR(100) NOT NULL,
 start_perc INT(6) NOT NULL,
-image_src VARCHAR(100) NOT NULL
+image_src VARCHAR(100) NOT NULL,
+color VARCHAR(100) NOT NULL
 )";
 
 if ($db_conn->query($sql) === TRUE) {

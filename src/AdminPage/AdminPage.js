@@ -4,6 +4,8 @@ import './AdminPage.css';
 import Config from '../config';
 import $ from 'jquery';
 
+import HistoryList from './HistoryList';
+
 class AdminPage extends Component {
 
     state = {
@@ -34,8 +36,8 @@ class AdminPage extends Component {
 
         let content = "Content";
 
-        if (this.state.adminPanelState == "showing_history") {
-            // content = <HistoryList data={this.state.historyData} />
+        if (this.state.adminPageState == "showing_history") {
+            content = <HistoryList historyData={this.state.historyData} />
         }
 
         return (

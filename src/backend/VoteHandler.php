@@ -1,19 +1,15 @@
 <?php
+include_once("setupdb.php");
+include_once("Vote.php");
+include_once("VoteVat.php");
+include_once("PollHandlerDb.php");
+include_once("VoteHandlerDb.php");
 
-include_once("VoteHandler.php");
+class VoteHandler {
 
-class DoneVoteHandler {
+    public static function addVote($valsArr) {
 
-    public static function handle() {
-        VoteHandler::addVote($_POST["vals"]);
-    }
-
-    /*
-    public static function handle() {
-        // echo "DoneVoteHandler";
-        // return;
-
-        $valsArr = $_POST["vals"];
+        // $valsArr = $_POST["vals"];
 
         VoteHandlerDb::saveToVoteTable();
 
@@ -26,15 +22,15 @@ class DoneVoteHandler {
             $valId = $valsArr[$i]["id"];
 
             if ($valId != $vat->id) {
-                echo "DoneVoteHandler.php: val id does not match vat id";
+                echo "VoteHandler.php: val id does not match vat id";
                 return;
             }
 
 			VoteHandlerDb::saveToVoteVatTable($voteInsertId, $vat->id, $perc);
 		}		
-        
+
     }
-    */
 
 }
+
 ?>

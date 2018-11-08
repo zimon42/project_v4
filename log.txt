@@ -468,3 +468,26 @@ Prints history dates to console
 
 Working on HistoryList component
 
+How do we make a table?
+How to concatenate jsx pieces
+https://stackoverflow.com/questions/36912179/how-to-concatenate-two-jsx-fragment-or-variables-or-string-and-component-in-rea/36913042
+
+Creates table with item_i inside cells
+
+Shows "drink" titles and draws blue bars. But why are only seven drink titles visible?
+
+Next: add random votes.
+
+Refactored out addVote - app still works, phew :-)
+
+add_random_vote bug: in Votehandler vat-id does not match val-id. Solved: id's begin at 1 not 0.
+
+Hm should yield 100 votes, not 1. Must use nested for loop
+
+add_random_votes now works!
+
+Next add colors
+
+Oh no empty history! create_tables erased old history items
+
+Displays colors!!

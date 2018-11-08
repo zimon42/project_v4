@@ -5,11 +5,13 @@ class Vat {
 	public $title;
 	public $startPerc;
 	public $imageSrc;
+	public $color;
 		
-	function __construct($title, $startPerc, $imageSrc) {
+	function __construct($title, $startPerc, $imageSrc, $color) {
 		$this->title = $title;
 		$this->startPerc = $startPerc;
 		$this->imageSrc = $imageSrc;
+		$this->color = $color;
 	}
 
 	// to json, used in GetVatsHandler
@@ -18,7 +20,8 @@ class Vat {
 			"id" => $this->id,
 			"title" => $this->title,
 			"val" => $this->startPerc,
-			"img" => $this->imageSrc
+			"img" => $this->imageSrc,
+			"color" => $this->color
 		);
 	}
 
