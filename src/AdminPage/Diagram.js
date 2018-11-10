@@ -33,6 +33,11 @@ class Diagram extends Component {
         // Bar
         let bar_x = this.title_length;
         let bar_width = Math.floor(item.val);
+
+        // Problem, for low start perc, hard to distinguish bar
+        // differences. Therefor multiply with scale factor
+        bar_width *= 2;
+
         let bar_style = {
             fill:item.color,
             strokeWidth:1,

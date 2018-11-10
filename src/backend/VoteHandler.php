@@ -22,7 +22,8 @@ class VoteHandler {
             $valId = $valsArr[$i]["id"];
 
             if ($valId != $vat->id) {
-                echo "VoteHandler.php: val id does not match vat id";
+                echo "Warning: VoteHandler.php: val id does not match vat id. ".
+                "val id is ".$valId." and vat id is ".$vat->id."<br>";
                 return;
             }
 

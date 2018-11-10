@@ -493,3 +493,10 @@ Oh no empty history! create_tables erased old history items
 Displays colors!!
 
 Now history looks real nice, with date header!
+
+Creating new algorithm for add_random_votes. Bug: Iterated forever. Solved: $t should have been $t++ in for loop. Bug 2: VoteHandler.php: val id does not match vat id. Solved: $valsArr = array() was inside for loop, should have been outside.
+
+New algorithm now works!
+
+Next: Implement show statistics
+Cannot find old stats page. Found it in vote_page.php
