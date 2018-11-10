@@ -1,7 +1,8 @@
 class Config {
 
     // 
-    static BACKEND_ENTRY_FILE = "http://localhost/miedweb/project_v4/src/backend/index.php";
+    // static BACKEND_ENTRY_FILE = "http://localhost/miedweb/project_v4/src/backend/index.php";
+    static BACKEND_ENTRY_FILE = "http://miedweb.org/momsapp_v4/backend/index.php";
 
     // If you change these values, you need to update 
     // the HorizontalSlider.css

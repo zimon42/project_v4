@@ -512,3 +512,27 @@ Ok time to make everything global
 
 Plan:
 1. Deploy to githubpages.
+npm run deploy
+
+2. Test react app frontend. Note: that backend not setup yet. Only portal will work.
+See address in package.json file: https://zimon42.github.io/project_v4
+
+3. Move backend files to manufrog
+Zip first.
+
+4. Log into manufrog cpanel. Use username and password highest up on paper. Open Filhanteraren. Click public_html. Create folder momsapp_v4. Upload .zip file. Right click and choose extract.
+
+5. Create database on manufrog: miedwebo_momsapp_v4
+Lägg till användare i databas: miedwebo_root. 
+
+6. Update database_info.php, check old file in old momsapp:
+$polls_db_server = "127.0.0.1";
+$polls_db_username = "miedwebo_root";
+$polls_db_password = "abcdefgh123456";
+$polls_db_database = "miedwebo_poll_database";
+Change miedwebo_poll_database to miedwebo_momsapp_v4
+
+7. Change config file backend_entry_file to miedweb.org/momsapp_v4/index.php
+Run npm run deploy again
+
+Then dont forget to change back to local backen_entry_file.
