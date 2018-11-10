@@ -9,9 +9,9 @@ class Stats extends Component {
         return (
             <div>
                 <div className="StatsItemHeader">
-                    Medelvärdet av {this.props.statsData.length} röster
+                    Medelvärdet av {this.props.statsData.num_votes} röster
                 </div>
-                <Diagram diagramData={this.props.statsData} />
+                <Diagram diagramData={this.props.statsData.vote_vats} />
             </div>
         )
     }

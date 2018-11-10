@@ -7,6 +7,8 @@ import $ from 'jquery';
 import HistoryList from './HistoryList';
 import Stats from './Stats';
 
+import { Redirect } from 'react-router';
+
 class AdminPage extends Component {
 
     state = {
@@ -53,8 +55,16 @@ class AdminPage extends Component {
         });
     }
 
+    returnToPortal = () => {
+        this.setState({returnToPortal: true});
+      }  
+
     render() {
 
+        if (this.state.returnToPortal) {
+            return <Redirect to='/' />
+        }
+    
         let content = "";
 
         if (this.state.adminPageState == "showing_history") {
@@ -70,7 +80,7 @@ class AdminPage extends Component {
                 <h2 className="header">Admin-panelen</h2>
                 <button onClick={this.clickHistoryHandler}>Visa historik</button>
                 <button onClick={this.clickStatsHandler}>Visa statistik</button>
-                <button>Tillbaka</button>
+                <button onClick={this.returnToPortal}>Tillbaka</button>
                 <hr />
                 <div className="contentPanel">{content}</div>
             </div>
