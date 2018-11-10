@@ -536,3 +536,60 @@ Change miedwebo_poll_database to miedwebo_momsapp_v4
 Run npm run deploy again
 
 Then dont forget to change back to local backen_entry_file.
+
+Error:
+jquery.js:8478 Mixed Content: The page at 'https://zimon42.github.io/project_v4/#/admin/' was loaded over HTTPS, but requested an insecure XMLHttpRequest endpoint 'http://miedweb.org/momsapp_v4/backend/index.php'. This request has been blocked; the content must be served over HTTPS.
+
+Try changing to 'https://miedweb.org/momsapp_v4/backend/index.php' in config file (added the s)
+
+Still same error. Right clicked and deleted cache. Now worked. Now Access to XMLHttpRequest at 'https://miedweb.org/momsapp_v4/backend/index.php' from origin 'https://zimon42.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+But I thought i had that header.
+
+https://stackoverflow.com/questions/26416727/cross-origin-resource-sharing-on-github-pages. "Theres no way on github pages to support cross origin" :-(. But crossed out, says it supports it now.
+
+From 2018 about setting up github pages:
+https://www.youtube.com/watch?v=SKXkC4SqtRk
+
+Google "how to enable cors on github pages".
+
+https://stackoverflow.com/questions/18923328/is-there-a-way-to-enable-cors-on-github-pages/25957840 "Is there a way to enable CORS for Github pages?"
+"Github Pages now has CORS enabled.
+The CORS header:
+Access-Control-Allow-Origin: *
+Is added by default on all responses from Github pages!"
+Hm not same thing. Is the problem with manufrog?
+
+Ok, make minified program that just tests cors on github pages.
+
+Plan:
+1. Create react app:
+Stand in c:\wamp64\www\miedweb and do create-react-app helloworld4
+
+2. Start server: npm start
+
+3. Install jquery: npm install jquery --save
+
+4. Gets data correctly to local computer. That means manufrog is not removing the cors header. Next, move it to github pages
+
+5. Create remote repo on github.
+echo "# helloworld4" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/zimon42/helloworld4.git
+git push -u origin master
+
+6. Install git, follow above instructions.
+
+7. npm run deploy. Page wont open.
+
+Ok, helloworld project works, copy code to it.
+
+Failed to load resource: the server responded with a status of 404 ()
+
+Handle cors:
+https://gist.github.com/jesperorb/6ca596217c8dfba237744966c2b5ab1e
+
+Hello world works!!!!
+This means cors is not the problem
