@@ -4,6 +4,7 @@
     include_once("GetVatsHandler.php");
     include_once("DoneVoteHandler.php");
     include_once("GetHistoryHandler.php");
+    include_once("GetStatsHandler.php");
 
     $action = $_POST["action"];
     // echo "Hello world";
@@ -21,6 +22,10 @@
 
     if ($action == "get_history") {
         GetHistoryHandler::handle();
+    }
+
+    if ($action == "get_stats") {
+        GetStatsHandler::handle();
     }
 
     // echo json_encode($_POST["vats"]);

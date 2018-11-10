@@ -500,3 +500,8 @@ New algorithm now works!
 
 Next: Implement show statistics
 Cannot find old stats page. Found it in vote_page.php
+
+Send json encoded stats array to client -> displays array
+
+Statistics page with diagram works! Although slow.
+Oops should not be 8 but 100

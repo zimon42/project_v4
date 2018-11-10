@@ -5,6 +5,7 @@ import Config from '../config';
 import $ from 'jquery';
 
 import HistoryList from './HistoryList';
+import Stats from './Stats';
 
 class AdminPage extends Component {
 
@@ -32,19 +33,43 @@ class AdminPage extends Component {
         });
     }
 
+    clickStatsHandler = () => {
+        // alert("clickStatsHandler");
+        this.loadStats();
+    }
+
+    loadStats() {
+        $.post(
+            Config.BACKEND_ENTRY_FILE,
+        { 
+            action:"get_stats"
+        },
+        (data, status) => {
+            console.log("Get stats: " + data + "\nStatus: " + status);
+            this.setState({
+                adminPageState: "showing_stats",
+                statsData: JSON.parse(data)
+            });            
+        });
+    }
+
     render() {
 
-        let content = "Content";
+        let content = "";
 
         if (this.state.adminPageState == "showing_history") {
             content = <HistoryList historyData={this.state.historyData} />
+        }
+
+        if (this.state.adminPageState == "showing_stats") {
+            content = <Stats statsData={this.state.statsData}/>
         }
 
         return (
             <div className="AdminPagePanel">
                 <h2 className="header">Admin-panelen</h2>
                 <button onClick={this.clickHistoryHandler}>Visa historik</button>
-                <button>Visa statistik</button>
+                <button onClick={this.clickStatsHandler}>Visa statistik</button>
                 <button>Tillbaka</button>
                 <hr />
                 <div className="contentPanel">{content}</div>
