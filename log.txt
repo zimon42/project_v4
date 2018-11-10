@@ -593,3 +593,5 @@ https://gist.github.com/jesperorb/6ca596217c8dfba237744966c2b5ab1e
 
 Hello world works!!!!
 This means cors is not the problem
+
+WOOOOOOOOOO!!!!!!!!! Solved bug. Had used the wrong path in the config file. Had used  https://miedweb.org/momsapp_v4/backend/index.php".But on the server i didnt have a "backend" folder. The files were directly in the momsapp_v4 folder. What probably happened was that a "Not found" message was sent to the client, which didnt have the allow-all-origin header.
